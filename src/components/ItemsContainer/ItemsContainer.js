@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { connect, useSelector } from "react-redux";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 import Item from "../Item";
 import "./ItemsContainer.css";
 

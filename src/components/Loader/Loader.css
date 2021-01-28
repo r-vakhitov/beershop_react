@@ -82,6 +82,9 @@
   display: inline-block;
   overflow: hidden;
   background: none;
+  display: flex;
+  margin: auto;
+  margin-top: 50px;
 }
 .ldio-7slxxstf83s {
   width: 100%;

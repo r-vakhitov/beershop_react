@@ -1,4 +1,4 @@
-import { FETCH_CATALOG, DRAG_ITEM } from "./types";
+import { FETCH_CATALOG, DRAG_ITEM, ADD_TO_BASKET, REMOVE_FROM_BASKET } from "./types";
 
 const initialState = {
   items: {
@@ -18,11 +18,13 @@ const initialState = {
 
 export const itemsReducer = (state = initialState, action) => {
   switch (action.type) {
+
     case FETCH_CATALOG:
       return {
         ...state,
         items: action.payload,
       };
+
     case DRAG_ITEM:
       const {destination, source, draggableId} = action.result;
 
@@ -89,6 +91,51 @@ export const itemsReducer = (state = initialState, action) => {
           ...state.items.byIds
           }
       }
+      }
+
+    case ADD_TO_BASKET:
+
+      if (Array.isArray(action.payload)) {
+
+        return {
+          ...state,
+          items: {
+            ...state.items,
+            columns: {
+              "inStock": {
+                id: "inStock",
+                itemsIds: []
+              },
+              "inBasket": {
+                id: "inBasket",
+                itemsIds: [...state.items.columns.inBasket.itemsIds, ...action.payload]
+              }
+            }
+          }
+        };
+      }
+      
+    case REMOVE_FROM_BASKET: 
+
+      if (Array.isArray(action.payload)) {
+        return {
+          ...state,
+          items: {
+            byIds: {
+              ...state.items.byIds
+              },
+            columns: {
+              "inStock": {
+                id: "inStock",
+                itemsIds: [...state.items.columns.inStock.itemsIds, ...action.payload]
+              },
+              "inBasket": {
+                id: "inBasket",
+                itemsIds: []
+              }
+            }
+          }
+        };
       }
 
     default:

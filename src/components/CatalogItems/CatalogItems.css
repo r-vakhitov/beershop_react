@@ -1,5 +1,68 @@
+.catalog {
+  display: flex;
+  justify-content: center;
+}
 .catalog__list {
   display: flex;
   justify-content: space-between;
   min-width: 100%;
+}
+
+.catalog__load-btn {
+  min-width: 300px;
+  margin-top: 30px;
+  background-color: rgb(248, 142, 142);
+  color: rgb(65, 8, 8);
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px -1px 17px 0px rgba(50, 50, 50, 0.54);
+  transition: .3s;
+  user-select: none;
+}
+
+.catalog__load-btn:hover {
+  background-color: rgb(116, 66, 66);
+  color: aliceblue;
+}
+
+.catalog__load-btn:active {
+  box-shadow: 0px 4px 11px 4px rgba(34, 60, 80, 0.2) inset;
+  opacity: 0.7;
+}
+
+.catalog__control {
+  min-width: 200px;
+  margin-top: 30px;
+  background-color: rgb(189, 223, 211);
+  color: rgb(10, 48, 29);
+  font-size: 18px;
+  padding: 9px;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0px -20px 16px -16px rgba(34, 60, 80, 0.14) inset;;
+  transition: .3s;
+  user-select: none;
+}
+
+.catalog__control:hover {
+  background-color:  rgb(48, 68, 58);
+  color: rgb(255, 255, 255);
+}
+
+.catalog__control:active {
+  opacity: 0.7;
+}
+
+.catalog__control:disabled {
+  opacity: 0.5;
+  cursor: auto;
+}
+
+.catalog__control:disabled:hover {
+  background-color: rgb(189, 223, 211);
+  color: rgb(10, 48, 29);
 }

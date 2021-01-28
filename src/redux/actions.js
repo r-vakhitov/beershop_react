@@ -64,10 +64,10 @@ export function addToBasket(item) {
   };
 }
 
-export function removeFromBasket(idx) {
+export function removeFromBasket(item) {
   return {
     type: REMOVE_FROM_BASKET,
-    payload: idx,
+    payload: item,
   };
 }
 

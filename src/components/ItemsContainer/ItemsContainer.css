@@ -7,6 +7,7 @@
   padding: 10px;
   height: 800px;
   overflow: auto;
+  border-radius: 3px;
 }
 
 .items-container__item {
