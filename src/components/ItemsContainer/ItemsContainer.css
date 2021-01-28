@@ -1,0 +1,23 @@
+.items-container {
+  width: 45%;
+  
+}
+.items-container__list {
+  list-style: none;
+  padding: 10px;
+  height: 800px;
+  overflow: auto;
+}
+
+.items-container__item {
+  user-select: none;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 10px;
+  font-size: 20px;
+  border-radius: 3px;
+}
+
+.items-container__item:not(:last-child) {
+  margin-bottom: 8px;
+}

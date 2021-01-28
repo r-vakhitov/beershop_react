@@ -1,11 +1,8 @@
 import React from "react";
+import "./Item.css";
 
-function Item({ item }) {
-  return (
-    <div>
-      <span>{item.name}</span>
-    </div>
-  );
+function Item({ content, ref, ...restProps }) {
+  return <span>{content}</span>;
 }
 
 export default Item;
