@@ -5,9 +5,23 @@ import Item from "../Item";
 import "./ItemsContainer.css";
 
 export default class ItemsContainer extends Component {
+  state = {
+    numToShow: 15
+  }
+
   render() {
+
     const { items, byIds } = this.props;
     const button = this.props.renderButton();
+    
+    const onScroll = (e) => {
+      if (e.target.offsetHeight + e.target.scrollTop === e.target.scrollHeight) {
+        this.setState(({ numToShow }) => ({
+          numToShow: Math.min(numToShow + 10, items.length),
+        }))
+      }
+    }
+
     return (
       <Droppable droppableId={this.props.id}>
         {(provided, snapshot) => {
@@ -16,6 +30,7 @@ export default class ItemsContainer extends Component {
               {button}
               <ul
                 className="items-container__list"
+                onScroll={onScroll}
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 style={{
@@ -24,7 +39,7 @@ export default class ItemsContainer extends Component {
                     : "lightgrey",
                 }}
               >
-                {items.map((item, index) => (
+                {items.slice(0, this.state.numToShow).map((item, index) => (
                   <Draggable
                     draggableId={item.toString()}
                     key={item}
