@@ -1,4 +1,4 @@
-import { FETCH_CATALOG, DRAG_ITEM, ADD_TO_BASKET, REMOVE_FROM_BASKET } from "./types";
+import { FETCH_CATALOG, DRAG_ITEM, ADD_ALL_TO_BASKET, REMOVE_ALL_FROM_BASKET, ADD_TO_BASKET, REMOVE_FROM_BASKET } from "./types";
 
 const initialState = {
   items: {
@@ -93,10 +93,7 @@ export const itemsReducer = (state = initialState, action) => {
       }
       }
 
-    case ADD_TO_BASKET:
-
-      if (Array.isArray(action.payload)) {
-
+    case ADD_ALL_TO_BASKET:
         return {
           ...state,
           items: {
@@ -113,11 +110,10 @@ export const itemsReducer = (state = initialState, action) => {
             }
           }
         };
-      }
-      
-    case REMOVE_FROM_BASKET: 
 
-      if (Array.isArray(action.payload)) {
+      
+    case REMOVE_ALL_FROM_BASKET: 
+
         return {
           ...state,
           items: {
@@ -136,7 +132,54 @@ export const itemsReducer = (state = initialState, action) => {
             }
           }
         };
-      }
+
+      case ADD_TO_BASKET:
+  
+        const addedItemIdx = state.items.columns.inStock.itemsIds.indexOf(action.payload);
+
+        return {
+          ...state,
+          items: {
+            byIds: {
+              ...state.items.byIds
+              },
+            columns: {
+              "inStock": {
+                id: "inStock",
+                itemsIds: [...state.items.columns.inStock.itemsIds.slice(0, addedItemIdx), ...state.items.columns.inStock.itemsIds.slice(addedItemIdx+1)]
+              },
+              "inBasket": {
+                id: "inBasket",
+                itemsIds: [...state.items.columns.inBasket.itemsIds, action.payload]
+              }
+            }
+          }
+        };
+
+      case REMOVE_FROM_BASKET:
+  
+        const removedItemIdx = state.items.columns.inBasket.itemsIds.indexOf(action.payload);
+
+        return {
+          ...state,
+          items: {
+            byIds: {
+              ...state.items.byIds
+              },
+            columns: {
+              "inStock": {
+                id: "inStock",
+                itemsIds: [...state.items.columns.inStock.itemsIds, action.payload]
+              },
+              "inBasket": {
+                id: "inBasket",
+                itemsIds: 
+                  [...state.items.columns.inBasket.itemsIds.slice(0, removedItemIdx), 
+                  ...state.items.columns.inBasket.itemsIds.slice(removedItemIdx+1)]
+              }
+            }
+          }
+        };
 
     default:
       return state;

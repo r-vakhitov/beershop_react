@@ -2,7 +2,7 @@ import React from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCatalog, addToBasket, dragItem, removeFromBasket } from "../../redux/actions";
+import { fetchCatalog, addAllToBasket, dragItem, removeAllFromBasket } from "../../redux/actions";
 import Loader from "../Loader";
 import ItemsContainer from "../ItemsContainer";
 
@@ -16,15 +16,15 @@ const CatalogItems = () => {
   const isLoading = useSelector((state) => state.app.loading);
   const isEmpty = (arr) => !arr.length;
 
-  const addHandler = (e) => {
+  const addAllHandler = () => {
     if (!!inStock.itemsIds.length) {
-      dispatch(addToBasket(inStock.itemsIds));
+      dispatch(addAllToBasket(inStock.itemsIds));
     }
   };
 
-  const removeHandler = (e) => {
+  const removeAllHandler = () => {
     if (!!inBasket.itemsIds.length) {
-      dispatch(removeFromBasket(inBasket.itemsIds));
+      dispatch(removeAllFromBasket(inBasket.itemsIds));
     }
   };
 
@@ -53,7 +53,7 @@ const CatalogItems = () => {
           byIds={byIds}
           id={inStock.id}
           renderButton={() => {
-            return <button type="button" disabled={isEmpty(inStock.itemsIds)} className="catalog__control" onClick={addHandler}>Добавить все</button>;
+            return <button type="button" disabled={isEmpty(inStock.itemsIds)} className="catalog__control" onClick={addAllHandler}>Добавить все</button>;
           }}
         />
         <ItemsContainer
@@ -62,7 +62,7 @@ const CatalogItems = () => {
           id={inBasket.id}
           renderButton={() => {
             return (
-              <button type="button" disabled={isEmpty(inBasket.itemsIds)} className="catalog__control" onClick={removeHandler}>Убрать все</button>
+              <button type="button" disabled={isEmpty(inBasket.itemsIds)} className="catalog__control" onClick={removeAllHandler}>Убрать все</button>
             );
           }}
         />

@@ -8,18 +8,21 @@ export default class ItemsContainer extends Component {
     numToShow: 15
   }
 
+  
+
   render() {
 
     const { items, byIds } = this.props;
     const button = this.props.renderButton();
-    
+
     const onScroll = (e) => {
-      if (e.target.offsetHeight + e.target.scrollTop === e.target.scrollHeight) {
+      if (e.target.offsetHeight + e.target.scrollTop === e.target.scrollHeight && !!items.length) {
         this.setState(({ numToShow }) => ({
           numToShow: Math.min(numToShow + 10, items.length),
         }))
       }
     }
+    
 
     return (
       <Droppable droppableId={this.props.id}>
@@ -40,7 +43,7 @@ export default class ItemsContainer extends Component {
               >
                 {items.slice(0, this.state.numToShow).map((item, index) => (
                   <Draggable
-                    draggableId={item.toString()}
+                    draggableId={item}
                     key={item}
                     index={index}
                   >
@@ -49,7 +52,6 @@ export default class ItemsContainer extends Component {
                         <li
                           className="items-container__item"
                           ref={provided.innerRef}
-                          content={byIds[item].name}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                           style={{
@@ -59,7 +61,7 @@ export default class ItemsContainer extends Component {
                             ...provided.draggableProps.style,
                           }}
                         >
-                          <Item content={byIds[item].name} />
+                          <Item content={byIds[item].name} id={item} />
                         </li>
                       );
                     }}

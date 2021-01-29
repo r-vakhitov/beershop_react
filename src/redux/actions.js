@@ -1,10 +1,12 @@
 import {
-  ADD_TO_BASKET,
-  REMOVE_FROM_BASKET,
+  ADD_ALL_TO_BASKET,
+  REMOVE_ALL_FROM_BASKET,
   FETCH_CATALOG,
   HIDE_LOADER,
   SHOW_LOADER,
   DRAG_ITEM,
+  ADD_TO_BASKET,
+  REMOVE_FROM_BASKET
 } from "./types";
 
 export function fetchCatalog() {
@@ -19,7 +21,7 @@ export function fetchCatalog() {
       const byIds = {};
       json.forEach((el) => {
         const { id, ...other } = el;
-        itemsIds.push(id);
+        itemsIds.push(id.toString());
         byIds[id] = { ...other };
       });
       dispatch({
@@ -57,6 +59,27 @@ export function hideLoader() {
   };
 }
 
+export function addAllToBasket(item) {
+  return {
+    type: ADD_ALL_TO_BASKET,
+    payload: item,
+  };
+}
+
+export function removeAllFromBasket(item) {
+  return {
+    type: REMOVE_ALL_FROM_BASKET,
+    payload: item,
+  };
+}
+
+export function dragItem(result) {
+  return {
+    type: DRAG_ITEM,
+    result,
+  };
+}
+
 export function addToBasket(item) {
   return {
     type: ADD_TO_BASKET,
@@ -68,12 +91,5 @@ export function removeFromBasket(item) {
   return {
     type: REMOVE_FROM_BASKET,
     payload: item,
-  };
-}
-
-export function dragItem(result) {
-  return {
-    type: DRAG_ITEM,
-    result,
   };
 }

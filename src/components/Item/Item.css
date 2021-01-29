@@ -1,0 +1,50 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 47px;
+}
+
+.item__btn {
+    display: none;
+    border: none;
+    background-color: transparent;
+    background-size: cover;
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+    transition: .2s;
+    margin-right: 10px;
+}
+
+.item__btn--basket {
+    background-image: url("../../imgs/shopping-cart.svg");
+}
+
+.item__btn--basket:hover {
+    background-image: url("../../imgs/shopping-cart-hover.svg");
+}
+
+.item__btn--rmv {
+    background-image: url("../../imgs/delete.svg");
+}
+
+.item__btn--rmv:hover {
+    background-image: url("../../imgs/delete-hover.svg");
+}
+
+.item__btn:hover {
+    width: 27px;
+    height: 27px;
+    margin-right: 8px;
+}
+
+.item:hover .item__btn {
+    display: block;
+}
+
+.item__name {
+    max-width: 80%;
+    padding: 10px;
+}

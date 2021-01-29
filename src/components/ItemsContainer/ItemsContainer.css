@@ -1,5 +1,5 @@
 .items-container {
-  width: 45%;
+  width: 46%;
   
 }
 .items-container__list {
@@ -8,17 +8,26 @@
   height: 800px;
   overflow: auto;
   border-radius: 3px;
+  overflow-y: scroll;
 }
 
 .items-container__item {
   user-select: none;
   box-sizing: border-box;
   width: 100%;
-  padding: 10px 10px;
+  padding: 0 15px;
   font-size: 20px;
   border-radius: 3px;
+  transition: .2s;
+  outline-color:  #d6efff;
 }
 
 .items-container__item:not(:last-child) {
   margin-bottom: 8px;
+}
+
+.items-container__item:hover {
+  outline: 5px solid #d6efff;
+  box-shadow: 0px 0px 24px 10px rgba(0,0,0,0.32);
+  border-radius: 0;
 }
