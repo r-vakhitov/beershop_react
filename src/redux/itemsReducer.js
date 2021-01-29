@@ -169,7 +169,7 @@ export const itemsReducer = (state = initialState, action) => {
             columns: {
               "inStock": {
                 id: "inStock",
-                itemsIds: [...state.items.columns.inStock.itemsIds, action.payload]
+                itemsIds: [action.payload, ...state.items.columns.inStock.itemsIds]
               },
               "inBasket": {
                 id: "inBasket",
