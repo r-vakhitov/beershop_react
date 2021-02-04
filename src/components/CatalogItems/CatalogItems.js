@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCatalog, addAllToBasket, dragItem, removeAllFromBasket } from "../../redux/actions";
 import Loader from "../Loader";
 import ItemsContainer from "../ItemsContainer";
+import SearchPanel from "../SearchPanel";
 
 import "./CatalogItems.css";
 
@@ -47,6 +48,7 @@ const CatalogItems = () => {
 
   return (
     <div className="catalog__list">
+      <SearchPanel />
       <DragDropContext onDragEnd={onDragEnd}>
         <ItemsContainer
           items={inStock.itemsIds}

@@ -1,4 +1,4 @@
-import { FETCH_CATALOG, DRAG_ITEM, ADD_ALL_TO_BASKET, REMOVE_ALL_FROM_BASKET, ADD_TO_BASKET, REMOVE_FROM_BASKET } from "./types";
+import { FETCH_CATALOG, DRAG_ITEM, ADD_ALL_TO_BASKET, REMOVE_ALL_FROM_BASKET, ADD_TO_BASKET, REMOVE_FROM_BASKET, ON_INPUT } from "./types";
 
 const initialState = {
   items: {
@@ -180,6 +180,27 @@ export const itemsReducer = (state = initialState, action) => {
             }
           }
         };
+      
+      case ON_INPUT:
+        const searchText = action.payload.trim() ? action.payload : ""
+
+        return{
+          ...state,
+          items: {
+            ...state.items,
+            columns: {
+              ...state.items.columns,
+              "inStock": {
+                id: "inStock",
+                itemsIds: [
+                  ...Object.keys(state.items.byIds).filter((key) => {
+                    return state.items.byIds[key].name.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+                  })
+                ]
+              }
+            }
+          },
+        }
 
     default:
       return state;

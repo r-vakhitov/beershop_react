@@ -6,7 +6,8 @@ import {
   SHOW_LOADER,
   DRAG_ITEM,
   ADD_TO_BASKET,
-  REMOVE_FROM_BASKET
+  REMOVE_FROM_BASKET,
+  ON_INPUT
 } from "./types";
 
 export function fetchCatalog() {
@@ -92,4 +93,11 @@ export function removeFromBasket(item) {
     type: REMOVE_FROM_BASKET,
     payload: item,
   };
+}
+
+export function onInputSearch(text) {
+  return {
+    type: ON_INPUT,
+    payload: text
+  }
 }
