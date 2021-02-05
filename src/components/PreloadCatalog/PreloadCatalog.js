@@ -23,11 +23,11 @@ export default function PreloadCatalog() {
     <div className="preload">
       <div>
         <span className="preload__question">Выберите тип напитка:</span>
-        <div class="preload__controls">
+        <div className="preload__controls">
           <input className="preload__input" id="pivo" ref={input1} onClick={checkHandler} name="drink" type="radio"/>
-          <label for="pivo">Пиво</label>
+          <label htmlFor="pivo">Пиво</label>
           <input className="preload__input" id="beer" ref={input2} onClick={checkHandler} name="drink" type="radio"/>
-          <label for="beer">Beer</label>
+          <label htmlFor="beer">Beer</label>
         </div>
       </div>
       <button type="button" disabled={!allowToClick} className="preload__btn" onClick={fetchHandler}>

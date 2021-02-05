@@ -1,5 +1,4 @@
 .nav {
-  
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,6 +6,20 @@
   color: #ffffff;
   width: 1000px;
   margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .nav {
+    width: 100%;
+    justify-content: space-around;
+  }
+  .nav__list {
+    font-size: 12px;
+  }
+
+  .nav__list li {
+    margin-right: 5px;
+  }
 }
 
 .nav-wrapper {

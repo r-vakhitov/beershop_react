@@ -4,6 +4,12 @@
   text-align: center;
 }
 
+@media (max-width: 600px) {
+  .preload {
+    width: 100%;
+  }
+}
+
 .preload__question {
   display: block;
   font-size: 22px;
