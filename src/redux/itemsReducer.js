@@ -123,7 +123,7 @@ export const itemsReducer = (state = initialState, action) => {
             columns: {
               "inStock": {
                 id: "inStock",
-                itemsIds: [...state.items.columns.inStock.itemsIds, ...action.payload]
+                itemsIds: [...action.payload, ...state.items.columns.inStock.itemsIds]
               },
               "inBasket": {
                 id: "inBasket",
@@ -182,7 +182,10 @@ export const itemsReducer = (state = initialState, action) => {
         };
       
       case ON_INPUT:
-        const searchText = action.payload.trim() ? action.payload : ""
+        const searchText = action.payload ? action.payload : ""
+      
+      
+        
 
         return{
           ...state,
@@ -194,11 +197,12 @@ export const itemsReducer = (state = initialState, action) => {
                 id: "inStock",
                 itemsIds: [
                   ...Object.keys(state.items.byIds).filter((key) => {
-                    return state.items.byIds[key].name.toLowerCase().indexOf(searchText.toLowerCase()) > -1
+                    return state.items.byIds[key].name.toLowerCase().indexOf(searchText.toLowerCase()) > -1 &&
+                            state.items.columns.inBasket.itemsIds.indexOf(key) === -1
                   })
                 ]
               }
-            }
+            },
           },
         }
 

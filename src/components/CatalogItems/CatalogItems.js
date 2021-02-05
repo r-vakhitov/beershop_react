@@ -2,12 +2,13 @@ import React from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCatalog, addAllToBasket, dragItem, removeAllFromBasket } from "../../redux/actions";
+import { fetchCatalog, addAllToBasket, dragItem, removeAllFromBasket, onFetchClicked } from "../../redux/actions";
 import Loader from "../Loader";
 import ItemsContainer from "../ItemsContainer";
 import SearchPanel from "../SearchPanel";
 
 import "./CatalogItems.css";
+import PreloadCatalog from "../PreloadCatalog";
 
 const CatalogItems = () => {
   const dispatch = useDispatch();
@@ -16,6 +17,9 @@ const CatalogItems = () => {
   const { inStock, inBasket } = columns;
   const isLoading = useSelector((state) => state.app.loading);
   const isEmpty = (arr) => !arr.length;
+  const isClicked = useSelector((state) => state.button.clicked)
+
+ 
 
   const addAllHandler = () => {
     if (!!inStock.itemsIds.length) {
@@ -34,11 +38,9 @@ const CatalogItems = () => {
     return <Loader />;
   }
 
-  if (!inStock.itemsIds.length && !inBasket.itemsIds.length) {
+  if (!isClicked) {
     return (
-      <button type="button" className="catalog__load-btn" onClick={() => dispatch(fetchCatalog())}>
-        Загрузить каталог
-      </button>
+      <PreloadCatalog />
     );
   }
 
@@ -47,29 +49,31 @@ const CatalogItems = () => {
   }
 
   return (
-    <div className="catalog__list">
+    <React.Fragment>
       <SearchPanel />
-      <DragDropContext onDragEnd={onDragEnd}>
-        <ItemsContainer
-          items={inStock.itemsIds}
-          byIds={byIds}
-          id={inStock.id}
-          renderButton={() => {
-            return <button type="button" disabled={isEmpty(inStock.itemsIds)} className="catalog__control" onClick={addAllHandler}>Добавить все</button>;
-          }}
-        />
-        <ItemsContainer
-          items={inBasket.itemsIds}
-          byIds={byIds}
-          id={inBasket.id}
-          renderButton={() => {
-            return (
-              <button type="button" disabled={isEmpty(inBasket.itemsIds)} className="catalog__control" onClick={removeAllHandler}>Убрать все</button>
-            );
-          }}
-        />
-      </DragDropContext>
-    </div>
+      <div className="catalog__list">
+        <DragDropContext onDragEnd={onDragEnd}>
+          <ItemsContainer
+            items={inStock.itemsIds}
+            byIds={byIds}
+            id={inStock.id}
+            renderButton={() => {
+              return <button type="button" disabled={isEmpty(inStock.itemsIds)} className="catalog__control" onClick={addAllHandler}>Добавить все</button>;
+            }}
+          />
+          <ItemsContainer
+            items={inBasket.itemsIds}
+            byIds={byIds}
+            id={inBasket.id}
+            renderButton={() => {
+              return (
+                <button type="button" disabled={isEmpty(inBasket.itemsIds)} className="catalog__control" onClick={removeAllHandler}>Убрать все</button>
+              );
+            }}
+          />
+        </DragDropContext>
+      </div>
+    </React.Fragment>
   );
 };
 

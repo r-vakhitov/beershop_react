@@ -4,8 +4,22 @@ import Item from "../Item";
 import "./ItemsContainer.css";
 
 export default class ItemsContainer extends Component {
-  state = {
-    numToShow: 15
+  constructor(props) {
+    super(props)
+    this.myref = React.createRef();
+    this.state = {
+      numToShow: 14
+    }
+    this.intersectionObserver = new IntersectionObserver(entries => {
+      var ratio = entries[0].intersectionRatio;
+      if (ratio > 0) {
+        this.setState({ numToShow: this.state.numToShow + 5 });
+      }
+    })
+  }
+
+  componentDidMount() {
+    this.intersectionObserver.observe(this.myref.current)
   }
 
   
@@ -14,14 +28,6 @@ export default class ItemsContainer extends Component {
 
     const { items, byIds } = this.props;
     const button = this.props.renderButton();
-
-    const onScroll = (e) => {
-      if (e.target.offsetHeight + e.target.scrollTop === e.target.scrollHeight && !!items.length) {
-        this.setState(({ numToShow }) => ({
-          numToShow: Math.min(numToShow + 10, items.length),
-        }))
-      }
-    }
     
 
     return (
@@ -32,7 +38,6 @@ export default class ItemsContainer extends Component {
               {button}
               <ul
                 className="items-container__list"
-                onScroll={onScroll}
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 style={{
@@ -68,7 +73,9 @@ export default class ItemsContainer extends Component {
                   </Draggable>
                 ))}
                 {provided.placeholder}
+                <div ref = {this.myref}></div>
               </ul>
+              
             </div>
           );
         }}

@@ -1,17 +1,30 @@
 .nav {
+  
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
-  background-color: rgb(48, 82, 94);
   color: #ffffff;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.nav-wrapper {
+  background-color: rgb(48, 82, 94);
+  width: 100%;
 }
 
 .nav__list {
+  text-transform: uppercase;
   list-style: none;
   padding: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 30%;
+  font-weight: bold;
+}
+
+.nav__list li:hover{
+  color: rgb(166, 255, 255)
 }

@@ -5,7 +5,7 @@
 .items-container__list {
   list-style: none;
   padding: 10px;
-  height: 800px;
+  height: 70vh;
   overflow: auto;
   border-radius: 3px;
   overflow-y: scroll;

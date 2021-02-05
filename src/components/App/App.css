@@ -1,3 +1,7 @@
+body {
+  overflow-y: scroll;
+}
+
 .App {
   width: 1000px;
   margin-left: auto;

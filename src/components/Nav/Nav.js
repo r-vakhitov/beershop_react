@@ -9,20 +9,22 @@ function Nav() {
   };
 
   return (
-    <nav className="nav">
-      <h2>BeerShop</h2>
-      <ul className="nav__list">
-        <Link style={linkStyle} to="/">
-          <li>Home</li>
-        </Link>
-        <Link style={linkStyle} to="/catalog">
-          <li>Catalog</li>
-        </Link>
-        <Link style={linkStyle} to="about">
-          <li>About</li>
-        </Link>
-      </ul>
-    </nav>
+    <div className="nav-wrapper">
+      <nav className="nav">
+        <h2>BeerShop</h2>
+        <ul className="nav__list">
+          <Link style={linkStyle} to="/">
+            <li>Home</li>
+          </Link>
+          <Link style={linkStyle} to="/catalog">
+            <li>Catalog</li>
+          </Link>
+          <Link style={linkStyle} to="about">
+            <li>About</li>
+          </Link>
+        </ul>
+      </nav>
+    </div>
   );
 }
 

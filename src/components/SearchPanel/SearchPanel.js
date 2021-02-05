@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { onInputSearch } from '../../redux/actions';
 import useDebounce from '../../customHooks/';
+import "./SearchPanel.css";
 
 function SearchPanel({onInput}) {
 
@@ -9,7 +10,7 @@ function SearchPanel({onInput}) {
 
     const debouncedSearchTerm = useDebounce(term, 300);
 
-    useEffect(() => onInput(debouncedSearchTerm) , [debouncedSearchTerm]);
+    useEffect(() => onInput(debouncedSearchTerm) , [debouncedSearchTerm, onInput]);
 
 
     const inputHandler = (e) => {
@@ -18,6 +19,7 @@ function SearchPanel({onInput}) {
 
     return (
         <input
+            className="search-input"
             type="text"
             placeholder="type to search"
             value={term}

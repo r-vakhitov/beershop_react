@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToBasket, removeFromBasket } from "../../redux/actions";
+import { addToBasket, removeFromBasket} from "../../redux/actions";
 import "./Item.css";
 
 function Item({ content, id }) {
@@ -22,11 +22,11 @@ function Item({ content, id }) {
   }
   
   return  (
-            <div className="item">
-              <span className="item__name">{content}</span>
-              {btn}
-            </div>
-          );
+    <div className="item">
+      <span className="item__name">{content}</span>
+      {btn}
+    </div>
+  );
 }
 
 export default Item;
