@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { fetchCatalog, onFetchClicked } from "../../redux/actions";
 import {useDispatch} from "react-redux";
 import './PreloadCatalog.css';

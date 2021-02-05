@@ -2,7 +2,7 @@ import React from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCatalog, addAllToBasket, dragItem, removeAllFromBasket, onFetchClicked } from "../../redux/actions";
+import { addAllToBasket, dragItem, removeAllFromBasket} from "../../redux/actions";
 import Loader from "../Loader";
 import ItemsContainer from "../ItemsContainer";
 import SearchPanel from "../SearchPanel";
