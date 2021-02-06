@@ -1,6 +1,5 @@
 .items-container {
   width: 46%;
-  
 }
 .items-container__list {
   list-style: none;
@@ -16,7 +15,8 @@
   box-sizing: border-box;
   width: 100%;
   padding: 0 15px;
-  font-size: 20px;
+  font-size: 28px;
+  font-weight: bold;
   border-radius: 3px;
   transition: .2s;
   outline-color:  #d6efff;
@@ -30,4 +30,15 @@
   outline: 5px solid #d6efff;
   box-shadow: 0px 0px 24px 10px rgba(0,0,0,0.32);
   border-radius: 0;
+}
+
+@media (max-width: 999px) {
+  .items-container {
+    min-width: 130px;
+  }
+
+  .items-container__item {
+    font-size: 24px;
+    padding: 0 9px;
+  }
 }

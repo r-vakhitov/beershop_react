@@ -1,22 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+
 body {
+  font-family: 'Amatic SC', cursive;
   overflow-y: scroll;
 }
 
+button, input {
+  font-family: inherit;
+}
+
 .App {
-  width: 1000px;
+  width: 960px;
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 999px) {
   .App {
-    width: 100%;
-    padding: 0 10px;
+    width: 85vw;
   }
 
   body {
     overflow-y: auto;
+    
   }
 }
 
+@media (max-width: 375px) {
+  body {
+    width: 375px;
+  }
+  .App {
+    min-width: 350px;
+  }
+}
