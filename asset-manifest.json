@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/beershop_react/static/css/main.11c50054.chunk.css",
-    "main.js": "/beershop_react/static/js/main.4e4a1548.chunk.js",
-    "main.js.map": "/beershop_react/static/js/main.4e4a1548.chunk.js.map",
+    "main.css": "/beershop_react/static/css/main.ca374db7.chunk.css",
+    "main.js": "/beershop_react/static/js/main.55e5ec13.chunk.js",
+    "main.js.map": "/beershop_react/static/js/main.55e5ec13.chunk.js.map",
     "runtime-main.js": "/beershop_react/static/js/runtime-main.48e9672e.js",
     "runtime-main.js.map": "/beershop_react/static/js/runtime-main.48e9672e.js.map",
-    "static/js/2.9c6c2c6e.chunk.js": "/beershop_react/static/js/2.9c6c2c6e.chunk.js",
-    "static/js/2.9c6c2c6e.chunk.js.map": "/beershop_react/static/js/2.9c6c2c6e.chunk.js.map",
+    "static/js/2.5ff2500e.chunk.js": "/beershop_react/static/js/2.5ff2500e.chunk.js",
+    "static/js/2.5ff2500e.chunk.js.map": "/beershop_react/static/js/2.5ff2500e.chunk.js.map",
     "index.html": "/beershop_react/index.html",
-    "static/css/main.11c50054.chunk.css.map": "/beershop_react/static/css/main.11c50054.chunk.css.map",
-    "static/js/2.9c6c2c6e.chunk.js.LICENSE.txt": "/beershop_react/static/js/2.9c6c2c6e.chunk.js.LICENSE.txt",
-    "static/media/Item.css": "/beershop_react/static/media/shopping-cart.52ba7b13.svg"
+    "static/css/main.ca374db7.chunk.css.map": "/beershop_react/static/css/main.ca374db7.chunk.css.map",
+    "static/js/2.5ff2500e.chunk.js.LICENSE.txt": "/beershop_react/static/js/2.5ff2500e.chunk.js.LICENSE.txt",
+    "static/media/Item.css": "/beershop_react/static/media/shopping-cart.ae105432.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.48e9672e.js",
-    "static/js/2.9c6c2c6e.chunk.js",
-    "static/css/main.11c50054.chunk.css",
-    "static/js/main.4e4a1548.chunk.js"
+    "static/js/2.5ff2500e.chunk.js",
+    "static/css/main.ca374db7.chunk.css",
+    "static/js/main.55e5ec13.chunk.js"
   ]
 }
