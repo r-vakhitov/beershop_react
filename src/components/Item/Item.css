@@ -35,8 +35,7 @@
 }
 
 .item__btn:hover {
-    width: 27px;
-    height: 27px;
+    transform: scale(1.5);
     margin-right: 8px;
 }
 

@@ -3,11 +3,11 @@ import { FETCH_CATALOG, DRAG_ITEM, ADD_ALL_TO_BASKET, REMOVE_ALL_FROM_BASKET, AD
 const initialState = {
   items: {
     columns: {
-      "inStock":{ 
+      inStock:{ 
         id: "inStock",
         itemsIds: [],
         },
-      "inBasket": { 
+      inBasket: { 
         id: "inBasket",
         itemsIds: [],
         },

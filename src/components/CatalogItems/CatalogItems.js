@@ -57,19 +57,17 @@ const CatalogItems = () => {
             items={inStock.itemsIds}
             byIds={byIds}
             id={inStock.id}
-            renderButton={() => {
-              return <button type="button" disabled={isEmpty(inStock.itemsIds)} className="catalog__control" onClick={addAllHandler}>Добавить все</button>;
-            }}
+            renderButton={() => (
+              <button type="button" disabled={isEmpty(inStock.itemsIds)} className="catalog__control" onClick={addAllHandler}>Добавить все</button>
+            )}
           />
           <ItemsContainer
             items={inBasket.itemsIds}
             byIds={byIds}
             id={inBasket.id}
-            renderButton={() => {
-              return (
+            renderButton={() => (
                 <button type="button" disabled={isEmpty(inBasket.itemsIds)} className="catalog__control" onClick={removeAllHandler}>Убрать все</button>
-              );
-            }}
+            )}
           />
         </DragDropContext>
       </div>

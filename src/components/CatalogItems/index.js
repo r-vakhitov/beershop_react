@@ -1,3 +1,1 @@
-import CatalogItems from "./CatalogItems";
-
-export default CatalogItems;
+export {default} from "./CatalogItems";
