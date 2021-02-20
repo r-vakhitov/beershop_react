@@ -2,6 +2,7 @@
   width: 46%;
   overflow: visible;
 }
+
 .items-container__list {
   list-style: none;
   padding: 10px;
@@ -21,7 +22,6 @@
   font-weight: bold;
   border-radius: 3px;
   transition: .2s;
-  outline-color:  #d6efff;
 }
 
 .items-container__item:not(:last-child) {
