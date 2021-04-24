@@ -1,6 +1,8 @@
 import React from "react";
-import "./Nav.css";
 import { Link } from "react-router-dom";
+
+import "./Nav.css";
+import {MAIN_URL, CATALOG_URL, ABOUT_URL} from '../../router/paths';
 
 function Nav() {
   const linkStyle = {
@@ -13,13 +15,13 @@ function Nav() {
       <nav className="nav">
         <h2>BeerShop</h2>
         <ul className="nav__list">
-          <Link style={linkStyle} to="/">
+          <Link style={linkStyle} to={MAIN_URL}>
             <li>Home</li>
           </Link>
-          <Link style={linkStyle} to="/catalog">
+          <Link style={linkStyle} to={CATALOG_URL}>
             <li>Catalog</li>
           </Link>
-          <Link style={linkStyle} to="/about">
+          <Link style={linkStyle} to={ABOUT_URL}>
             <li>About</li>
           </Link>
         </ul>

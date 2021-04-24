@@ -10,25 +10,39 @@ function Item({ content, id }: {
 }) {
   const {inBasket} = useSelector((state: IStoreState) => state.catalog.items.columns);
   const dispatch = useDispatch();
+<<<<<<< HEAD:src/components/Item/Item.tsx
   let btn;
   const addHandler = (e: any) => {
+=======
+
+  const addHandler = (e) => {
+>>>>>>> 2e933a46b6ca8bc32c5aac2d9cda19e376d56f3b:src/components/Item/Item.js
     dispatch(addToBasket(e.target.id))
   }
   const removeHandler = (e: any) => {
     dispatch(removeFromBasket(e.target.id))
   }
 
-  const isNotInBasket = inBasket.itemsIds.indexOf(id) === -1;
-  if (isNotInBasket) {
-    btn = <button id={id} onClick={addHandler} type="button" className="item__btn item__btn--basket"></button>
-  } else {
-    btn = <button id={id} onClick={removeHandler} type="button" className="item__btn item__btn--rmv"></button>
-  }
+  const isNotInBasket = !inBasket.itemsIds.includes(id);
+
+  const button = isNotInBasket ? (
+    <button
+      id={id}
+      onClick={addHandler}
+      type="button"
+      className="item__btn item__btn--basket"/>
+  ) : (
+    <button
+      id={id}
+      onClick={removeHandler}
+      type="button"
+      className="item__btn item__btn--rmv"
+    />);
   
   return  (
     <div className="item">
       <span className="item__name">{content}</span>
-      {btn}
+      {button}
     </div>
   );
 }

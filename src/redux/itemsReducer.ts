@@ -4,7 +4,11 @@ import { FETCH_CATALOG, DRAG_ITEM, ADD_ALL_TO_BASKET, REMOVE_ALL_FROM_BASKET, AD
 const initialState : ItemsState = {
   items: {
     columns: {
+<<<<<<< HEAD:src/redux/itemsReducer.ts
       inStock: { 
+=======
+      inStock:{ 
+>>>>>>> 2e933a46b6ca8bc32c5aac2d9cda19e376d56f3b:src/redux/itemsReducer.js
         id: "inStock",
         itemsIds: [],
         },

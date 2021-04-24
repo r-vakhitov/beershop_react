@@ -1,3 +1,1 @@
-import PreloadCatalog from './PreloadCatalog';
-
-export default PreloadCatalog;
+export {default} from './PreloadCatalog';
