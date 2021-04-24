@@ -1,16 +1,20 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { IStoreState } from "src/types/types";
 import { addToBasket, removeFromBasket} from "../../redux/actions";
 import "./Item.css";
 
-function Item({ content, id }) {
-  const {inBasket} = useSelector((state) => state.catalog.items.columns);
+function Item({ content, id }: {
+  content: string;
+  id: string;
+}) {
+  const {inBasket} = useSelector((state: IStoreState) => state.catalog.items.columns);
   const dispatch = useDispatch();
   let btn;
-  const addHandler = (e) => {
+  const addHandler = (e: any) => {
     dispatch(addToBasket(e.target.id))
   }
-  const removeHandler = (e) => {
+  const removeHandler = (e: any) => {
     dispatch(removeFromBasket(e.target.id))
   }
 

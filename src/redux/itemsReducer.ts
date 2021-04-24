@@ -1,13 +1,14 @@
-import { FETCH_CATALOG, DRAG_ITEM, ADD_ALL_TO_BASKET, REMOVE_ALL_FROM_BASKET, ADD_TO_BASKET, REMOVE_FROM_BASKET, ON_INPUT } from "./types";
+import { ItemsState, ItemsAction, FetchItemsAction, AllToBasketAction, OneToBasketAction, OnInputAction } from "src/types/types";
+import { FETCH_CATALOG, DRAG_ITEM, ADD_ALL_TO_BASKET, REMOVE_ALL_FROM_BASKET, ADD_TO_BASKET, REMOVE_FROM_BASKET, ON_INPUT } from "../types/types";
 
-const initialState = {
+const initialState : ItemsState = {
   items: {
     columns: {
-      "inStock":{ 
+      inStock: { 
         id: "inStock",
         itemsIds: [],
         },
-      "inBasket": { 
+      inBasket: { 
         id: "inBasket",
         itemsIds: [],
         },
@@ -16,29 +17,29 @@ const initialState = {
   },
 };
 
-export const itemsReducer = (state = initialState, action) => {
+export const itemsReducer = (state = initialState, action: ItemsAction) : ItemsState => {
   switch (action.type) {
 
     case FETCH_CATALOG:
-      return fetchCatalogReducer(state, action);
+      return fetchCatalogReducer(state, action as FetchItemsAction);
 
     case DRAG_ITEM:
       return dragItemReducer(state, action);
       
     case ADD_ALL_TO_BASKET:
-      return addAllToBasketReducer(state, action);
+      return addAllToBasketReducer(state, action as AllToBasketAction);
 
     case REMOVE_ALL_FROM_BASKET: 
-      return removeAllFromBasketReducer(state, action);
+      return removeAllFromBasketReducer(state, action as AllToBasketAction);
         
     case ADD_TO_BASKET:
-      return addToBasketReducer(state, action);
+      return addToBasketReducer(state, action as OneToBasketAction);
       
     case REMOVE_FROM_BASKET:
-      return removeFromBasketReducer(state, action);
+      return removeFromBasketReducer(state, action as OneToBasketAction);
 
     case ON_INPUT:
-      return onInputReducer(state, action);
+      return onInputReducer(state, action as OnInputAction);
 
     default:
       return state;
@@ -48,7 +49,7 @@ export const itemsReducer = (state = initialState, action) => {
 
 // FETCH_CATALOG
 
-const fetchCatalogReducer = (state, action) => {
+const fetchCatalogReducer = (state : ItemsState, action: FetchItemsAction) => {
   return {
     ...state,
     items: action.payload,
@@ -58,8 +59,8 @@ const fetchCatalogReducer = (state, action) => {
 
 // DRAG_ITEM
 
-const dragItemReducer = (state, action) => {
-  const {destination, source, draggableId} = action.result;
+const dragItemReducer = (state : ItemsState, action: ItemsAction) => {
+  const {destination, source, draggableId} = (action as any).result;
 
   if (!destination) {
     return state;
@@ -72,8 +73,8 @@ const dragItemReducer = (state, action) => {
     return state;
   }
 
-  const start = state.items.columns[source.droppableId];
-  const finish = state.items.columns[destination.droppableId]
+  const start = (state.items.columns as any)[source.droppableId];
+  const finish = (state.items.columns as any)[destination.droppableId]
 
   if (start === finish) {
     const newItemsIds = [...start.itemsIds];
@@ -131,7 +132,7 @@ const dragItemReducer = (state, action) => {
 
 // ADD_ALL_TO_BASKET
 
-const addAllToBasketReducer = (state, action) => {
+const addAllToBasketReducer = (state : ItemsState, action: AllToBasketAction) => {
   return {
     ...state,
     items: {
@@ -154,7 +155,7 @@ const addAllToBasketReducer = (state, action) => {
 
 // REMOVE_ALL_FROM_BASKET
 
-const removeAllFromBasketReducer = (state, action) => {
+const removeAllFromBasketReducer = (state : ItemsState, action: AllToBasketAction) => {
   return {
     ...state,
     items: {
@@ -177,7 +178,7 @@ const removeAllFromBasketReducer = (state, action) => {
 
 // ADD_TO_BASKET
 
-const addToBasketReducer= (state, action) => {
+const addToBasketReducer= (state : ItemsState, action: OneToBasketAction) => {
   const addedItemIdx = state.items.columns.inStock.itemsIds.indexOf(action.payload);
 
   return {
@@ -204,7 +205,7 @@ const addToBasketReducer= (state, action) => {
 
 // REMOVE_FROM_BASKET
 
-const removeFromBasketReducer= (state, action) => {
+const removeFromBasketReducer= (state : ItemsState, action: OneToBasketAction) => {
   const removedItemIdx = state.items.columns.inBasket.itemsIds.indexOf(action.payload);
 
   return {
@@ -232,7 +233,7 @@ const removeFromBasketReducer= (state, action) => {
 
 // ON_INPUT
 
-const onInputReducer= (state, action) => {
+const onInputReducer= (state : ItemsState, action: OnInputAction) => {
   const searchText = action.payload ? action.payload : ""
   return{
     ...state,
@@ -243,7 +244,7 @@ const onInputReducer= (state, action) => {
         "inStock": {
           id: "inStock",
           itemsIds: [
-            ...Object.keys(state.items.byIds).filter((key) => {
+            ...Object.keys(state.items.byIds).filter((key: string) => {
               return state.items.byIds[key].name.toLowerCase().indexOf(searchText.toLowerCase()) > -1 &&
                       state.items.columns.inBasket.itemsIds.indexOf(key) === -1
             })

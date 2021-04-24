@@ -8,23 +8,24 @@ import {
   ADD_TO_BASKET,
   REMOVE_FROM_BASKET,
   ON_INPUT,
-  FETCH_CLICK
-} from "./types";
+  FETCH_CLICK,
+  IBeerCard
+} from "../types/types";
 
 export function fetchCatalog() {
-  return async (dispatch) => {
+  return async (dispatch: (obj: object) => void) => {
     try {
       dispatch(showLoader());
       const response = await fetch(
         "https://api.punkapi.com/v2/beers?per_page=80"
       );
       const json = await response.json();
-      const itemsIds = [];
-      const byIds = {};
-      json.forEach((el) => {
+      const itemsIds: string[] = [];
+      const byIds: IBeerCard | {} = {};
+      json.forEach((el: {id: string} & IBeerCard) => {
         const { id, ...other } = el;
         itemsIds.push(id.toString());
-        byIds[id] = { ...other };
+        (byIds as any)[id] = { ...other };
       });
       dispatch({
         type: FETCH_CATALOG,
@@ -61,42 +62,42 @@ export function hideLoader() {
   };
 }
 
-export function addAllToBasket(item) {
+export function addAllToBasket(item: string[]) {
   return {
     type: ADD_ALL_TO_BASKET,
     payload: item,
   };
 }
 
-export function removeAllFromBasket(item) {
+export function removeAllFromBasket(item: string[]) {
   return {
     type: REMOVE_ALL_FROM_BASKET,
     payload: item,
   };
 }
 
-export function dragItem(result) {
+export function dragItem(result: any) {
   return {
     type: DRAG_ITEM,
     result,
   };
 }
 
-export function addToBasket(item) {
+export function addToBasket(item: string) {
   return {
     type: ADD_TO_BASKET,
     payload: item,
   };
 }
 
-export function removeFromBasket(item) {
+export function removeFromBasket(item: string) {
   return {
     type: REMOVE_FROM_BASKET,
     payload: item,
   };
 }
 
-export function onInputSearch(text) {
+export function onInputSearch(text: string) {
   return {
     type: ON_INPUT,
     payload: text.trim()

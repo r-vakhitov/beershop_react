@@ -9,15 +9,16 @@ import SearchPanel from "../SearchPanel";
 
 import "./CatalogItems.css";
 import PreloadCatalog from "../PreloadCatalog";
+import { IStoreState } from "src/types/types";
 
 const CatalogItems = () => {
   const dispatch = useDispatch();
-  const catalog = useSelector((state) => state.catalog.items);
+  const catalog = useSelector((state: IStoreState) => state.catalog.items);
   const { columns, byIds } = catalog;
   const { inStock, inBasket } = columns;
-  const isLoading = useSelector((state) => state.app.loading);
-  const isEmpty = (arr) => !arr.length;
-  const isClicked = useSelector((state) => state.button.clicked)
+  const isLoading = useSelector((state: IStoreState) => state.app.loading);
+  const isEmpty = (arr: string[]) => !arr.length;
+  const isClicked = useSelector((state: IStoreState) => state.button.clicked)
 
  
 
@@ -44,7 +45,7 @@ const CatalogItems = () => {
     );
   }
 
-  const onDragEnd = (result) => {
+  const onDragEnd = (result: any) => {
     dispatch(dragItem(result));
   }
 
