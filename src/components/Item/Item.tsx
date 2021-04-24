@@ -10,13 +10,8 @@ function Item({ content, id }: {
 }) {
   const {inBasket} = useSelector((state: IStoreState) => state.catalog.items.columns);
   const dispatch = useDispatch();
-<<<<<<< HEAD:src/components/Item/Item.tsx
   let btn;
   const addHandler = (e: any) => {
-=======
-
-  const addHandler = (e) => {
->>>>>>> 2e933a46b6ca8bc32c5aac2d9cda19e376d56f3b:src/components/Item/Item.js
     dispatch(addToBasket(e.target.id))
   }
   const removeHandler = (e: any) => {
