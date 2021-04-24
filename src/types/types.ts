@@ -1,3 +1,5 @@
+import { DropResult } from "react-beautiful-dnd";
+
 export const FETCH_CATALOG = "FETCH_CATALOG";
 export const SHOW_LOADER = "SHOW_LOADER";
 export const HIDE_LOADER = "HIDE_LOADER";
@@ -50,17 +52,19 @@ export interface IBeerCard {
   contributed_by: string;
 }
 
-interface IItems {
-  columns: {
-    inStock: {
-      id: string;
-      itemsIds: any[];
-    };
-    inBasket: {
-      id: string;
-      itemsIds: any[];
-    };
+export interface IColumns {
+  inStock: {
+    id: string;
+    itemsIds: any[];
   };
+  inBasket: {
+    id: string;
+    itemsIds: any[];
+  };
+}
+
+interface IItems {
+  columns: IColumns
   byIds: {
     [index: string]: IBeerCard;
   };
@@ -94,7 +98,12 @@ export interface OnInputAction {
   payload: string;
 }
 
-export type ItemsAction = SimpleItemsAction | FetchItemsAction | AllToBasketAction | OneToBasketAction | OnInputAction;
+export interface OnDragAction {
+  type: typeof DRAG_ITEM;
+  result: DropResult;
+}
+
+export type ItemsAction = SimpleItemsAction | FetchItemsAction | AllToBasketAction | OneToBasketAction | OnInputAction | OnDragAction;
 
 export interface IAppState {
   loading: boolean;

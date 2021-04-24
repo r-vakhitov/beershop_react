@@ -1,4 +1,4 @@
-import { ItemsState, ItemsAction, FetchItemsAction, AllToBasketAction, OneToBasketAction, OnInputAction } from "src/types/types";
+import { ItemsState, ItemsAction, FetchItemsAction, AllToBasketAction, OneToBasketAction, OnInputAction, IColumns, OnDragAction } from "src/types/types";
 import { FETCH_CATALOG, DRAG_ITEM, ADD_ALL_TO_BASKET, REMOVE_ALL_FROM_BASKET, ADD_TO_BASKET, REMOVE_FROM_BASKET, ON_INPUT } from "../types/types";
 
 const initialState : ItemsState = {
@@ -24,7 +24,7 @@ export const itemsReducer = (state = initialState, action: ItemsAction) : ItemsS
       return fetchCatalogReducer(state, action as FetchItemsAction);
 
     case DRAG_ITEM:
-      return dragItemReducer(state, action);
+      return dragItemReducer(state, action as OnDragAction);
       
     case ADD_ALL_TO_BASKET:
       return addAllToBasketReducer(state, action as AllToBasketAction);
@@ -59,8 +59,8 @@ const fetchCatalogReducer = (state : ItemsState, action: FetchItemsAction) => {
 
 // DRAG_ITEM
 
-const dragItemReducer = (state : ItemsState, action: ItemsAction) => {
-  const {destination, source, draggableId} = (action as any).result;
+const dragItemReducer = (state : ItemsState, action: OnDragAction) => {
+  const {destination, source, draggableId} = action.result;
 
   if (!destination) {
     return state;
@@ -73,8 +73,8 @@ const dragItemReducer = (state : ItemsState, action: ItemsAction) => {
     return state;
   }
 
-  const start = (state.items.columns as any)[source.droppableId];
-  const finish = (state.items.columns as any)[destination.droppableId]
+  const start = state.items.columns[source.droppableId as keyof IColumns];
+  const finish = state.items.columns[destination.droppableId as keyof IColumns];
 
   if (start === finish) {
     const newItemsIds = [...start.itemsIds];
