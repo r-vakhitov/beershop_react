@@ -55,19 +55,21 @@ export interface IBeerCard {
 export interface IColumns {
   inStock: {
     id: string;
-    itemsIds: any[];
+    itemsIds: string[];
   };
   inBasket: {
     id: string;
-    itemsIds: any[];
+    itemsIds: string[];
   };
 }
 
+export interface IByIds {
+  [index: string]: IBeerCard;
+}
+
 interface IItems {
-  columns: IColumns
-  byIds: {
-    [index: string]: IBeerCard;
-  };
+  columns: IColumns;
+  byIds: IByIds;
 }
 
 export interface ItemsState {

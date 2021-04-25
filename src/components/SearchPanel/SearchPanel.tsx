@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Dispatch, FormEvent, ChangeEvent } from 'react';
 import { connect } from 'react-redux';
 import { onInputSearch } from '../../redux/actions';
-import useDebounce from '../../customHooks/';
+import useDebounce from '../../customHooks';
 import "./SearchPanel.css";
+import { Action } from 'redux';
 
-function SearchPanel({onInput}) {
+function SearchPanel({onInput}: {
+    onInput: (text: string) => void;
+}) {
 
     const [term, setTerm] = useState("");
 
@@ -13,7 +16,7 @@ function SearchPanel({onInput}) {
     useEffect(() => onInput(debouncedSearchTerm) , [debouncedSearchTerm, onInput]);
 
 
-    const inputHandler = (e) => {
+    const inputHandler = (e: ChangeEvent<HTMLInputElement>) => {
       setTerm(e.target.value)
     }
 
@@ -29,9 +32,9 @@ function SearchPanel({onInput}) {
 }
 
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
     return {
-        onInput: (text) => {
+        onInput: (text: string) => {
             dispatch(onInputSearch(text))
         }
     }

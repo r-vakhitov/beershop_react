@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IStoreState } from "src/types/types";
 import { addToBasket, removeFromBasket} from "../../redux/actions";
@@ -10,12 +10,11 @@ function Item({ content, id }: {
 }) {
   const {inBasket} = useSelector((state: IStoreState) => state.catalog.items.columns);
   const dispatch = useDispatch();
-  let btn;
-  const addHandler = (e: any) => {
-    dispatch(addToBasket(e.target.id))
+  const addHandler = (e: MouseEvent) => {
+    dispatch(addToBasket((e.target as HTMLElement).id))
   }
-  const removeHandler = (e: any) => {
-    dispatch(removeFromBasket(e.target.id))
+  const removeHandler = (e: MouseEvent) => {
+    dispatch(removeFromBasket((e.target as HTMLElement).id))
   }
 
   const isNotInBasket = !inBasket.itemsIds.includes(id);

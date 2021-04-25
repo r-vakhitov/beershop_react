@@ -6,11 +6,11 @@ import './PreloadCatalog.css';
 
 export default function PreloadCatalog() {
   const [allowToClick, setAllow] = useState(false)
-  const input1 = useRef();
-  const input2 = useRef();
+  const input1 = useRef<HTMLInputElement>(null);
+  const input2  = useRef<HTMLInputElement>(null);
   const inputs = [input1, input2]
   const checkHandler = () => {
-    setAllow(inputs.some((input) => input.current.checked))
+    setAllow(inputs.some((input) => input.current !== null && input.current.checked));
   }
 
   const dispatch = useDispatch();

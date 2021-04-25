@@ -1,25 +1,41 @@
 import React, { Component } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import { IByIds } from "src/types/types";
+import { JsxElement } from "typescript";
 import Item from "../Item";
 import "./ItemsContainer.css";
 
-export default class ItemsContainer extends Component {
-  constructor(props) {
+interface IItemsContainerState {
+  numToShow: number;
+}
+
+interface IItemsContainerProps {
+  items: string[];
+  id: string;
+  byIds: IByIds;
+  renderButton: () => void;
+}
+
+export default class ItemsContainer extends Component<IItemsContainerProps, IItemsContainerState> {
+  constructor(props: any) {
     super(props)
-    this.myref = React.createRef();
     this.state = {
       numToShow: 14
     }
-    this.intersectionObserver = new IntersectionObserver(entries => {
-      var ratio = entries[0].intersectionRatio;
-      if (ratio > 0) {
-        this.setState({ numToShow: this.state.numToShow + 5 });
-      }
-    })
   }
 
+  myref = React.createRef<HTMLDivElement>();
+  intersectionObserver = new IntersectionObserver(entries => {
+    var ratio = entries[0].intersectionRatio;
+    if (ratio > 0) {
+      this.setState({ numToShow: this.state.numToShow + 5 });
+    }
+  })
+
   componentDidMount() {
-    this.intersectionObserver.observe(this.myref.current)
+    if (this.myref.current !== null) {
+      this.intersectionObserver.observe(this.myref.current);
+    }
   }
 
   
